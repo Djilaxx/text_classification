@@ -1,6 +1,6 @@
-# **Image Classification**
+# **Text classification**
 
-This repository contains image classification projects i've worked on, either for fun/education or competition on Kaggle. \
+This repository contains text classification projects i've worked on, either for fun/education or competition on Kaggle. \
 Each project have it's own readme containing information about the specific problematics of each. 
 
 I train the models locally on my pc using a Nvidia 1080 GPU. 
@@ -12,7 +12,6 @@ Links to the datasets are in the tasks Readme.
 ---
 The task folder contains the specific code about each project :
  * config.py file containing  most of the hyperparameters of the model.
- * augment.py that contain the specific augmentations you want to perform on the images for training, validation and testing,
  * run.py file that start the training cycle. \
 
 To start training a model on any task use this command in terminal :
