@@ -1,0 +1,9 @@
+easydict
+numpy
+pandas
+scikit-learn
+pillow
+tqdm
+pytorch
+torchvision
+pytorch-lightning
