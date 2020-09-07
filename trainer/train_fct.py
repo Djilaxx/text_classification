@@ -25,17 +25,18 @@ class Trainer:
         losses = AverageMeter()
 
         tk0 = tqdm(data_loader, total=len(data_loader))
-
         for _, data in enumerate(tk0):
-            images = data["images"]
+            ids = data["ids"]
+            masks = data["masks"]
             labels = data["labels"]
 
-            images = images.to(self.device)
+            ids = ids.to(self.device)
+            masks = masks.to(self.device)
             labels = labels.to(self.device)
 
             self.model.zero_grad()
 
-            output = self.model(images)
+            output = self.model(ids, masks)
             loss = self.criterion(output, labels)
             
             loss.backward()
@@ -44,7 +45,7 @@ class Trainer:
             if self.scheduler is not None:
                 self.scheduler.step()
 
-            losses.update(loss.item(), images.size(0))
+            losses.update(loss.item(), ids.size(0))
             tk0.set_postfix(loss=losses.avg)
 
     def eval_step(self, data_loader, metric):
@@ -55,13 +56,15 @@ class Trainer:
         with torch.no_grad():
             tk0 = tqdm(data_loader, total=len(data_loader))
             for _, data in enumerate(tk0):
-                images = data["images"]
+                ids = data["ids"]
+                masks = data["masks"]
                 labels = data["labels"]
 
-                images = images.to(self.device)
+                ids = ids.to(self.device)
+                masks = masks.to(self.device)
                 labels = labels.to(self.device)
 
-                output = self.model(images)
+                output = self.model(ids, masks)
                 loss = self.criterion(output, labels)
 
                 metric_used = metrics_dict[metric]
@@ -70,8 +73,8 @@ class Trainer:
 
                 metric_value = metric_used(labels, predictions)
 
-                losses.update(loss.item(), images.size(0))
-                metrics_avg.update(metric_value.item(), images.size(0))
+                losses.update(loss.item(), ids.size(0))
+                metrics_avg.update(metric_value.item(), ids.size(0))
 
                 tk0.set_postfix(loss=losses.avg)
         print(f"Validation Loss = {losses.avg}")
