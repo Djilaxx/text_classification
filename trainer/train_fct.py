@@ -48,7 +48,7 @@ class Trainer:
             losses.update(loss.item(), ids.size(0))
             tk0.set_postfix(loss=losses.avg)
 
-    def eval_step(self, data_loader, metric):
+    def eval_step(self, data_loader, metric, n_class):
         self.model.eval()
         losses = AverageMeter()
         metrics_avg = AverageMeter()
@@ -71,7 +71,7 @@ class Trainer:
                 predictions = torch.softmax(output, dim=1)
                 _, predictions = torch.max(predictions, dim=1)
 
-                metric_value = metric_used(labels, predictions)
+                metric_value = metric_used(labels, predictions, n_class)
 
                 losses.update(loss.item(), ids.size(0))
                 metrics_avg.update(metric_value.item(), ids.size(0))

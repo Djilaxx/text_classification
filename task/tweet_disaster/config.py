@@ -19,12 +19,13 @@ config.main.TEXT_VAR = "text"
 config.main.DEVICE = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 config.main.N_CLASS = 2
 config.main.MAX_LEN = 160
+config.main.DISTILBERT_PATH = "models/distilbert_config/"
 
 ###################
 # HYPERPARAMETERS #
 ###################
 config.hyper = edict()
-config.hyper.TRAIN_BS = 32                                                                           #Batch size for training pass
-config.hyper.VALID_BS = 16                                                                           #Batch size for validation pass
-config.hyper.EPOCHS = 5                                                                              #Number of epochs
-config.hyper.LR = 1e-4                                                                             #Learning rate
+config.hyper.TRAIN_BS = 16                                                                              #Batch size for training pass
+config.hyper.VALID_BS = 8                                                                               #Batch size for validation pass
+config.hyper.EPOCHS = 5                                                                                 #Number of epochs
+config.hyper.LR = 1e-4                                                                                  #Learning rate

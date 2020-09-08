@@ -26,8 +26,8 @@ class TEXT_DS(Dataset):
         mask = inputs['attention_mask']
         return {
             'ids': torch.tensor(ids, dtype=torch.long),
-            'mask': torch.tensor(mask, dtype=torch.long),
-            'targets': torch.tensor(self.labels[index], dtype=torch.float)
+            'masks': torch.tensor(mask, dtype=torch.long),
+            'labels': torch.tensor(self.labels[index], dtype=torch.long)
         }
         
     def __len__(self):
