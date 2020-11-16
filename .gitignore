@@ -132,4 +132,7 @@ Blindness_Detect/
 melanoma/
 aerial-cactus-identification/
 data/
-distilbert_config/
+models/distilbert/config/
+models/distilbert/config/pytorch_model.bin
+models/distilbert/config/config.json
+models/distilbert/config/vocab.txt

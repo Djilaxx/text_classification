@@ -3,9 +3,9 @@ import torch.nn as nn
 import transformers
 
 class distilbert(torch.nn.Module):
-    def __init__(self, n_class, model_path):
+    def __init__(self, n_class, model_config_path):
         super(distilbert, self).__init__()
-        self.distill_bert = transformers.DistilBertModel.from_pretrained(model_path)
+        self.distill_bert = transformers.DistilBertModel.from_pretrained(model_config_path)
         self.drop = nn.Dropout(0.3)
         self.l0 = nn.Linear(768, n_class)
         torch.nn.init.normal_(self.l0.weight, std=0.02)
