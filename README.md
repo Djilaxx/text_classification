@@ -36,6 +36,12 @@ The parameters can take different values :
 * **loss** : You can choose any loss function that is in the loss/ folder.
 * **metric** : The training procedure return loss throughout training and validation, and accuracy by default, but you can choose to return another validation metric if needed (the metrics you can choose from are in **utils/metrics.py**)
 
+## **Models**
+---
+### **DistilBERT**
+DistilBERT is a 'BERT-like' model that was trained with the purpose of pruning the original model while keeping as much performance as possible. The result is a model with 40% less parameters while preserving 95% of BERT's performances. \
+I use a pretrained config when training this model for speed purposes that you can find [here](https://www.kaggle.com/abhishek/distilbertbaseuncased) \
+I place those files under models/distilbert/config/
 ## **To do** 
 ---
 * Being able to switch between transformers and RNNs seemlessly.
